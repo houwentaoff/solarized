@@ -252,6 +252,7 @@ if (has("gui_running") && g:solarized_degrade == 0)
     let s:base3       = "#fdf6e3"
     let s:yellow      = "#b58900"
     let s:orange      = "#cb4b16"
+    let s:purple      = "#6F42CC"
     let s:red         = "#dc322f"
     let s:magenta     = "#d33682"
     let s:violet      = "#6c71c4"
@@ -274,6 +275,7 @@ elseif (has("gui_running") && g:solarized_degrade == 1)
     let s:base3       = "#ffffd7"
     let s:yellow      = "#af8700"
     let s:orange      = "#d75f00"
+    let s:purple      = "#6F42CC"
     let s:red         = "#af0000"
     let s:magenta     = "#af005f"
     let s:violet      = "#5f5faf"
@@ -292,6 +294,7 @@ elseif g:solarized_termcolors != 256 && &t_Co >= 16
     let s:base3       = "15"
     let s:yellow      = "3"
     let s:orange      = "9"
+    let s:purple      = "13"
     let s:red         = "1"
     let s:magenta     = "5"
     let s:violet      = "13"
@@ -310,6 +313,7 @@ elseif g:solarized_termcolors == 256
     let s:base3       = "230"
     let s:yellow      = "136"
     let s:orange      = "166"
+    let s:purple      = "54"
     let s:red         = "124"
     let s:magenta     = "125"
     let s:violet      = "61"
@@ -345,6 +349,7 @@ else
     let s:base3       = "White"         " 7*
     let s:yellow      = "DarkYellow"    " 3
     let s:orange      = "LightRed"      " 1*
+    let s:purple      = "LightRed"      " 1*
     let s:red         = "DarkRed"       " 1
     let s:magenta     = "DarkMagenta"   " 5
     let s:violet      = "LightMagenta"  " 5*
@@ -447,6 +452,7 @@ exe "let s:bg_base3     = ' ".s:vmode."bg=".s:base3  ."'"
 exe "let s:bg_green     = ' ".s:vmode."bg=".s:green  ."'"
 exe "let s:bg_yellow    = ' ".s:vmode."bg=".s:yellow ."'"
 exe "let s:bg_orange    = ' ".s:vmode."bg=".s:orange ."'"
+exe "let s:bg_purple    = ' ".s:vmode."bg=".s:purple ."'"
 exe "let s:bg_red       = ' ".s:vmode."bg=".s:red    ."'"
 exe "let s:bg_magenta   = ' ".s:vmode."bg=".s:magenta."'"
 exe "let s:bg_violet    = ' ".s:vmode."bg=".s:violet ."'"
@@ -466,6 +472,7 @@ exe "let s:fg_base3     = ' ".s:vmode."fg=".s:base3  ."'"
 exe "let s:fg_green     = ' ".s:vmode."fg=".s:green  ."'"
 exe "let s:fg_yellow    = ' ".s:vmode."fg=".s:yellow ."'"
 exe "let s:fg_orange    = ' ".s:vmode."fg=".s:orange ."'"
+exe "let s:fg_purple    = ' ".s:vmode."fg=".s:purple ."'"
 exe "let s:fg_red       = ' ".s:vmode."fg=".s:red    ."'"
 exe "let s:fg_magenta   = ' ".s:vmode."fg=".s:magenta."'"
 exe "let s:fg_violet    = ' ".s:vmode."fg=".s:violet ."'"
@@ -549,7 +556,8 @@ exe "hi! Constant"       .s:fmt_none   .s:fg_cyan   .s:bg_none
 "        Boolean         a boolean constant: TRUE, false
 "        Float           a floating point constant: 2.3e10
 
-exe "hi! Identifier"     .s:fmt_none   .s:fg_blue   .s:bg_none
+"exe "hi! Identifier"     .s:fmt_none   .s:fg_blue   .s:bg_none
+exe "hi! Identifier"     .s:fmt_none   .s:fg_purple   .s:bg_none
 "       *Identifier      any variable name
 "        Function        function name (also: methods for classes)
 "
