@@ -260,6 +260,8 @@ if (has("gui_running") && g:solarized_degrade == 0)
     let s:cyan        = "#2aa198"
     "let s:green       = "#859900" "original
     let s:green       = "#719e07" "experimental
+    let s:comment_green       = "#719e07" "experimental
+    let s:green01       = "#719e07" "experimental
 elseif (has("gui_running") && g:solarized_degrade == 1)
     " These colors are identical to the 256 color mode. They may be viewed
     " while in gui mode via "let g:solarized_degrade=1", though this is not
@@ -282,6 +284,33 @@ elseif (has("gui_running") && g:solarized_degrade == 1)
     let s:blue        = "#0087ff"
     let s:cyan        = "#00afaf"
     let s:green       = "#5f8700"
+    let s:comment_green       = "#5f8700"
+    let s:green01       = "#5f8700"
+elseif g:solarized_termcolors == 256
+    let s:vmode       = "cterm"
+    let s:base03      = "234"
+    let s:base02      = "235"
+    let s:base01      = "239"
+    let s:base00      = "240"
+    let s:base0       = "244"
+    let s:base1       = "245"
+    let s:base2       = "187"
+    let s:base3       = "230"
+    let s:yellow      = "136"
+    let s:orange      = "166"
+    "joy hou
+    "let s:purple      = "54"
+    let s:purple      = "164"
+    let s:red         = "124"
+    let s:magenta     = "125"
+    let s:violet      = "61"
+    let s:blue        = "33"
+    let s:cyan        = "37"
+    " joy hou fix
+    "let s:green       = "64"
+    let s:green       = "64"
+    let s:comment_green       = "40"
+    let s:green01      = "76"
 elseif g:solarized_termcolors != 256 && &t_Co >= 16
     let s:vmode       = "cterm"
     let s:base03      = "8"
@@ -300,26 +329,10 @@ elseif g:solarized_termcolors != 256 && &t_Co >= 16
     let s:violet      = "13"
     let s:blue        = "4"
     let s:cyan        = "6"
+   " let s:green       = "2"
     let s:green       = "2"
-elseif g:solarized_termcolors == 256
-    let s:vmode       = "cterm"
-    let s:base03      = "234"
-    let s:base02      = "235"
-    let s:base01      = "239"
-    let s:base00      = "240"
-    let s:base0       = "244"
-    let s:base1       = "245"
-    let s:base2       = "187"
-    let s:base3       = "230"
-    let s:yellow      = "136"
-    let s:orange      = "166"
-    let s:purple      = "54"
-    let s:red         = "124"
-    let s:magenta     = "125"
-    let s:violet      = "61"
-    let s:blue        = "33"
-    let s:cyan        = "37"
-    let s:green       = "64"
+    let s:comment_green       = "2"
+    let s:green01       = "2"
 else
     let s:vmode       = "cterm"
     let s:bright      = "* term=bold cterm=bold"
@@ -356,6 +369,8 @@ else
     let s:blue        = "DarkBlue"      " 4
     let s:cyan        = "DarkCyan"      " 6
     let s:green       = "DarkGreen"     " 2
+    let s:comment_green       = "DarkGreen"     " 2
+    let s:green01       = "DarkGreen"     " 2
 
 endif
 "}}}
@@ -470,6 +485,8 @@ exe "let s:fg_base1     = ' ".s:vmode."fg=".s:base1  ."'"
 exe "let s:fg_base2     = ' ".s:vmode."fg=".s:base2  ."'"
 exe "let s:fg_base3     = ' ".s:vmode."fg=".s:base3  ."'"
 exe "let s:fg_green     = ' ".s:vmode."fg=".s:green  ."'"
+exe "let s:fg_com_green     = ' ".s:vmode."fg=".s:comment_green  ."'"
+exe "let s:fg_green01   = ' ".s:vmode."fg=".s:green01  ."'"
 exe "let s:fg_yellow    = ' ".s:vmode."fg=".s:yellow ."'"
 exe "let s:fg_orange    = ' ".s:vmode."fg=".s:orange ."'"
 exe "let s:fg_purple    = ' ".s:vmode."fg=".s:purple ."'"
@@ -545,7 +562,8 @@ endif
 
 exe "hi! Normal"         .s:fmt_none   .s:fg_base0  .s:bg_back
 
-exe "hi! Comment"        .s:fmt_ital   .s:fg_base01 .s:bg_none
+"  exe "hi! Comment"        .s:fmt_ital   .s:fg_base01 .s:bg_none
+exe "hi! Comment"        .s:fmt_ital   .s:fg_com_green .s:bg_none
 "       *Comment         any comment
 
 exe "hi! Constant"       .s:fmt_none   .s:fg_cyan   .s:bg_none
@@ -626,7 +644,9 @@ exe "hi! IncSearch"      .s:fmt_stnd   .s:fg_orange .s:bg_none
 exe "hi! Search"         .s:fmt_revr   .s:fg_yellow .s:bg_none
 exe "hi! MoreMsg"        .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! ModeMsg"        .s:fmt_none   .s:fg_blue   .s:bg_none
-exe "hi! LineNr"         .s:fmt_none   .s:fg_base01 .s:bg_base02
+" vim set num : line num
+"exe "hi! LineNr"         .s:fmt_none   .s:fg_base01 .s:bg_base02
+exe "hi! LineNr"         .s:fmt_none   .s:fg_green01 .s:bg_base02
 exe "hi! Question"       .s:fmt_bold   .s:fg_cyan   .s:bg_none
 if ( has("gui_running") || &t_Co > 8 )
     exe "hi! VertSplit"  .s:fmt_none   .s:fg_base00 .s:bg_base00
@@ -738,7 +758,8 @@ hi! link diffLine Identifier
 "exe "hi! gitDiffRemoved"
 "gitcommit
 "exe "hi! gitcommitSummary"      
-exe "hi! gitcommitComment"      .s:fmt_ital     .s:fg_base01    .s:bg_none
+"exe "hi! gitcommitComment"      .s:fmt_ital     .s:fg_base01    .s:bg_none
+exe "hi! gitcommitComment"      .s:fmt_ital     .s:fg_com_green    .s:bg_none
 hi! link gitcommitUntracked gitcommitComment
 hi! link gitcommitDiscarded gitcommitComment
 hi! link gitcommitSelected  gitcommitComment
